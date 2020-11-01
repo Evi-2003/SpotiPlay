@@ -1,4 +1,4 @@
-# SpotPlay
+# SpotiPlay
 A program to automatically find the right music video for the song, and play it in line with the song. 
 
 # Language
