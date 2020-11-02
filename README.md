@@ -10,7 +10,7 @@ For now, you need to set your own variables from the Spotify Developer website.
 # TO-DO 
 - [ ] Implement a authorization for the user, this is needed by Spotify
 - [X] Detecting the songs name + Artist
-- [ ] Getting the song name out of the results variable
+- [x] Getting the song name out of the results variable
 - [ ] Using the songs name to find the right music video for it using Youtube. 
 - [ ] Displaying the right video, and make it so it follows the song at the right time. 
 
