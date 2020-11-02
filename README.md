@@ -7,10 +7,22 @@ I'm going to build this using Python
 # API
 For this to work we need to detect the song that is currently playing. Spotify has an API for this. 
 For now, you need to set your own variables from the Spotify Developer website. 
+
+# Requirements 
+You can install those using PIP
+ - VLC
+ - Spotipy
+ - Spotify (duh)
+ - Pafy
+ - youtube_search
+
 # TO-DO 
 - [ ] Implement a authorization for the user, this is needed by Spotify
+- [ ] Make the video follow the timestamp of the song
+- [ ] When the song ends, the scripts need to be reloaded automatically
 - [X] Detecting the songs name + Artist
 - [x] Getting the song name out of the results variable
-- [ ] Using the songs name to find the right music video for it using Youtube. 
-- [ ] Displaying the right video, and make it so it follows the song at the right time. 
+- [x] Using the songs name to find the right music video for it using Youtube. 
+- [x] Displaying the right video
+
 
