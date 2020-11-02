@@ -17,12 +17,12 @@ You can install those using PIP
  - youtube_search
 
 # TO-DO 
-- [ ] Implement a authorization for the user, this is needed by Spotify
-- [ ] Make the video follow the timestamp of the song
-- [ ] When the song ends, the scripts need to be reloaded automatically
 - [X] Detecting the songs name + Artist
 - [x] Getting the song name out of the results variable
 - [x] Using the songs name to find the right music video for it using Youtube. 
 - [x] Displaying the right video
+- [ ] Implement a authorization for the user, this is needed by Spotify
+- [ ] Make the video follow the timestamp of the song
+- [ ] When the song ends, the scripts need to be reloaded automatically
 
 
