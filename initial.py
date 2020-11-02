@@ -20,4 +20,6 @@ if token:
     sp = spotipy.Spotify(auth=token)
     results = sp.current_user_playing_track()
     songName = results["item"]["name"]
+    artistName = results['item']['album']['artists'][0]['name']
     print(songName)
+    print(artistName)
