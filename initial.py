@@ -19,5 +19,5 @@ token = util.prompt_for_user_token(
 if token:
     sp = spotipy.Spotify(auth=token)
     results = sp.current_user_playing_track()
-    songs = results["item"]["name"]
-    print(songs)
+    songName = results["item"]["name"]
+    print(songName)
