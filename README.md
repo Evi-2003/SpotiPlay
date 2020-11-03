@@ -16,9 +16,9 @@ For now, you need to set your own variables from the Spotify Developer website.
 # Requirements 
 - Python - I made it at Python 3.9
 You can install those using PIP
- - VLC
- - Spotipy
- - Pafy
+ - python-vlc
+ - spotipy
+ - pafy
  - youtube_search
 # Music Player
 Just keep using Spotify, i only made it for spotify
