@@ -6,8 +6,6 @@ At your spotify dashboard you need to add the redirection url: 'http://example.c
 After you have installed the requirements.
 Now go play a song, and start run.py. It will immediately start the youtube video at 0:00 and not at the point where the song is in Spotify. So ones the video starts, reset your spotify number, by sliding the progress bar to the left. 
 
--
-
 You may notice at some video's the song and the video does not go aline of eachother. This is a irritating issue which for now i can't resolve. It is simply because of official music video's are often a bit longer then the actual song on Spotify. Which i can't detect. If the song writer is singing it can look weird if the don't align. 
 ## You can fix this by muting your Spotify and change the script line at line 49 to false. This unmutes the videos.  ---- I may make this the default, not sure yet.
 # Language
