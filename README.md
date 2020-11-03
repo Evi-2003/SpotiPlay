@@ -21,6 +21,7 @@ You can install those using PIP
  - pafy
  - youtube_search
  - youtube-dl
+ - win32-gui
 # Music Player
 Just keep using Spotify, i only made it for spotify
 # TO-DO 
