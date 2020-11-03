@@ -14,6 +14,7 @@ I'm going to build this using Python
 For this to work we need to detect the song that is currently playing. Spotify has an API for this. 
 For now, you need to set your own variables from the Spotify Developer website. 
 # Requirements 
+- Install VLC Media Player
 - Python - I made it at Python 3.9
 You can install those using PIP
  - python-vlc
@@ -21,7 +22,7 @@ You can install those using PIP
  - pafy
  - youtube_search
  - youtube-dl
- - win32-gui
+ - pywin32
 # Music Player
 Just keep using Spotify, i only made it for spotify
 # TO-DO 
