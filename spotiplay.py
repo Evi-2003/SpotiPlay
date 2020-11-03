@@ -20,38 +20,42 @@ token = util.prompt_for_user_token(
                            client_secret='-',
                            redirect_uri='http://example.com/callback/')
 
-def EeverythingActually():
-    #GETTING THE SONG
-    if token:
-        sp = spotipy.Spotify(auth=token)
-        results = sp.current_user_playing_track()
-        songName = results["item"]["name"]
-        artistName = results['item']['album']['artists'][0]['name']
-        search = songName + " - " + artistName
-        searchResult = YoutubeSearch(search, max_results=1).to_dict()
-        print(songName)
-        print(artistName)
-        print(search)
-        print(searchResult[0]['id'] )
-        songTimeStamp = results['progress_ms'] / 1000
-        roundedSongTimeStamp = math.trunc(songTimeStamp)
-        # GETTING THE ACTUAL VIDEO
-        url = 'https://youtube.com/watch?v=' + searchResult[0]['id'] + "&t=" + str(roundedSongTimeStamp) + "s" # This is for selecting the right video
-        print(url)
-        video = pafy.new(url)
-        best = video.getbestvideo()
-        media = vlc.MediaPlayer(best.url)
-        media.play()
-        media.audio_set_mute(True)
+class spotiplay(object):
+    def EeverythingActually(self):
+        # GETTING THE SONG
+        if token:
+            sp = spotipy.Spotify(auth=token)
+            results = sp.current_user_playing_track()
+            songName = results["item"]["name"]
+            artistName = results['item']['album']['artists'][0]['name']
+            search = songName + " - " + artistName
+            searchResult = YoutubeSearch(search, max_results=1).to_dict()
+            print(songName)
+            print(artistName)
+            print(search)
+            print(searchResult[0]['id'])
+            songTimeStamp = results['progress_ms'] / 1000
+            roundedSongTimeStamp = math.trunc(songTimeStamp)
+            # GETTING THE ACTUAL VIDEO
+            url = 'https://youtube.com/watch?v=' + searchResult[0]['id'] + "&t=" + str(
+                roundedSongTimeStamp) + "s"  # This is for selecting the right video, and time. But doesnt work that way sadly, but was a good try...
+            print(url)
+            video = pafy.new(url)
+            best = video.getbestvideo()
+            media = vlc.MediaPlayer(best.url)
+            media.play()
+            media.audio_set_mute(True)
+            videoLength = (video.length)
+            print(videoLength)
+            time.sleep(videoLength)
+            media.stop()
+            os.system("reloader.py")
+            # Restarting the script ones the video ends
+            # We will need another script for this one
 
-        videoLength = (video.length)
-        time.sleep(videoLength)
-        media.stop()
-
-        # Resetting the song to 00:00 so the video should be right on time with the song
 
 
-EeverythingActually()
+spotiplay.EeverythingActually(1)
 
 while True:
      pass
