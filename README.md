@@ -29,7 +29,7 @@ Just keep using Spotify, i only made it for spotify
 - [x] Displaying the right video
 - [x] When the song ends, the scripts need to be reloaded automatically
 - [ ] Make the video follow the timestamp of the song - This is a hard one for now
-- [ ] Implement a authorization for the user, this is needed by Spotify
+- [ ] Implement a easy authorization for the user, so they don't have to edit the script
 
 
 
