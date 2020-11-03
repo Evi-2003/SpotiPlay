@@ -49,7 +49,7 @@ class spotiplay(object):
             media.audio_set_mute(True)
             videoLength = (video.length)
             print(videoLength)
-            time.sleep(SpotifySongDuration -10)
+            time.sleep(SpotifySongDuration -5)
             media.stop()
             os.system("reloader.py")
             # Restarting the script ones the video ends
