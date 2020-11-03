@@ -28,6 +28,7 @@ class spotiplay(object):
             results = sp.current_user_playing_track()
             songName = results["item"]["name"]
             artistName = results['item']['album']['artists'][0]['name']
+
             search = songName + " - " + artistName
             searchResult = YoutubeSearch(search, max_results=1).to_dict()
             print(songName)
@@ -35,6 +36,7 @@ class spotiplay(object):
             print(search)
             print(searchResult[0]['id'])
             songTimeStamp = results['progress_ms'] / 1000
+            SpotifySongDuration = results['item']['duration_ms'] /1000
             roundedSongTimeStamp = math.trunc(songTimeStamp)
             # GETTING THE ACTUAL VIDEO
             url = 'https://youtube.com/watch?v=' + searchResult[0]['id'] + "&t=" + str(
@@ -47,7 +49,7 @@ class spotiplay(object):
             media.audio_set_mute(True)
             videoLength = (video.length)
             print(videoLength)
-            time.sleep(videoLength)
+            time.sleep(SpotifySongDuration -10)
             media.stop()
             os.system("reloader.py")
             # Restarting the script ones the video ends
