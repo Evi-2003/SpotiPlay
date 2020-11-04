@@ -31,8 +31,9 @@ Just keep using Spotify, i only made it for spotify
 - [x] Using the songs name to find the right music video for it using Youtube. 
 - [x] Displaying the right video
 - [x] When the song ends, the scripts need to be reloaded automatically
-- [ ] Make the video follow the timestamp of the song - This is a hard one for now -- Need to figure out how to make the VLC video start from another time than 0:00. I found out that i could change the youtube url with the seconds played in Spotify. But sadly that's not the fix. VLC downloads the video from 0;00 so that won't work for now. 
 - [X] Implement a easy authorization for the user, so they don't have to edit the script --- For now impossible, from a security stand point. I can't hide the secret key. So you need to set your own. I could only do this on a server side, which i won't do. (Maybe in the future)
+- [ ] Make the video follow the timestamp of the song - This is a hard one for now -- Need to figure out how to make the VLC video start from another time than 0:00. I found out that i could change the youtube url with the seconds played in Spotify. But sadly that's not the fix. VLC downloads the video from 0;00 so that won't work for now. 
+
 
 
 
