@@ -9,7 +9,7 @@ import win32gui
 from spotipy.oauth2 import SpotifyOAuth
 from youtube_search import YoutubeSearch
 import spotipy.util as util
-# we need some Authentication, because who the fuck are you.
+# We need some Authentication.
 # The Client_ID Client_Secret And Username needs to be set by yourself, for now.
 username = "-"
 scope = "user-read-currently-playing"
