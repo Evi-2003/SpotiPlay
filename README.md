@@ -1,7 +1,7 @@
 # SpotiPlay
 A program to automatically find the right music video for the song, and play it in line with the song. 
 # Usage
-Change the values of: Clien_ID, Client_Secret and the username. You get those from the Spotify Developer dashboard. The username is not the same as you're email. You can find your username at spotify.com and then under account. 
+Change the values of: Client_ID, Client_Secret and the username. You get those from the Spotify Developer dashboard. The username is not the same as you're email. You can find your username at spotify.com and then under account. 
 At your spotify dashboard you need to add the redirection url: 'http://example.com/callback/' to be accepted. 
 After you have installed the requirements.
 Now go play a song, and start run.py. It will immediately start the youtube video at 0:00 and not at the point where the song is in Spotify. So ones the video starts, reset your spotify song, by sliding the progress bar to the left. 
