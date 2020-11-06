@@ -1,5 +1,6 @@
 # SpotiPlay
-A program to automatically find the right music video for the song, and play it in line with the song. 
+A program to automatically find the right music video for the Spotify song, and play it in line with the song. 
+So you can watch the official music video's while using Spotify. Hope you like it! 
 # Usage
 Change the values of: Client_ID, Client_Secret and the username. You get those from the Spotify Developer dashboard. The username is not the same as you're email. You can find your username at spotify.com and then under account. 
 At your spotify dashboard you need to add the redirection url: 'http://example.com/callback/' to be accepted. 
