@@ -40,18 +40,25 @@ class spotiplay(object):
             url = 'https://youtube.com/watch?v=' + searchResult[0]['id'] + "&t=" + str(roundedSongTimeStamp) + "s"  # This is for selecting the right video, and time. But doesnt work that way sadly, but was a good try...
             video = pafy.new(url)
             best = video.getbestvideo()
-            media = vlc.MediaPlayer(best.url)
-            media.play()
-            media.audio_set_mute(True)
-            videoLength = (video.length)
+            Instance = vlc.Instance()
+            player = Instance.media_player_new()
+            Media = Instance.media_new(best.url)
             # I want to check again where the song is, because of the loading time of the script.
             results = sp.current_user_playing_track()
             SpotifySongDuration = results['item']['duration_ms'] / 1000
             songTimeStamp = results['progress_ms'] / 1000
             roundedSongTimeStamp = math.trunc(songTimeStamp)
+            # The actuaL player
             print("You are currently at: " + str(roundedSongTimeStamp) + "S" + " of the " + str(SpotifySongDuration) + "S")
+            Media.add_option('start-time=' + str(songTimeStamp + 1)) #1s run time diffrence
+            Media.get_mrl()
+            player.set_media(Media)
+            player.play()
+            videoLength = (video.length)
+            # I want to check again where the song is, because of the loading time of the script.
+
             time.sleep(SpotifySongDuration - roundedSongTimeStamp)
-            media.stop()
+            player.stop()
             os.system("reloader.py")
             # Restarting the script ones the video ends
             # We will need another script for this one
