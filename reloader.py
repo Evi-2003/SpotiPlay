@@ -1,3 +1,3 @@
-from run import spotiplay
+  from SpotiPlay import spotiplay
 rerun = spotiplay(1)
 rerun()
