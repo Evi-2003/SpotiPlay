@@ -31,25 +31,26 @@ class spotiplay(object):
 
             search = songName + " - " + artistName
             searchResult = YoutubeSearch(search, max_results=1).to_dict()
-            print(songName)
-            print(artistName)
-            print(search)
+            print("Song Author " + artistName)
             print(searchResult[0]['id'])
             songTimeStamp = results['progress_ms'] / 1000
             SpotifySongDuration = results['item']['duration_ms'] /1000
             roundedSongTimeStamp = math.trunc(songTimeStamp)
             # GETTING THE ACTUAL VIDEO
-            url = 'https://youtube.com/watch?v=' + searchResult[0]['id'] + "&t=" + str(
-                roundedSongTimeStamp) + "s"  # This is for selecting the right video, and time. But doesnt work that way sadly, but was a good try...
-            print(url)
+            url = 'https://youtube.com/watch?v=' + searchResult[0]['id'] + "&t=" + str(roundedSongTimeStamp) + "s"  # This is for selecting the right video, and time. But doesnt work that way sadly, but was a good try...
             video = pafy.new(url)
             best = video.getbestvideo()
             media = vlc.MediaPlayer(best.url)
             media.play()
             media.audio_set_mute(True)
             videoLength = (video.length)
-            print(videoLength)
-            time.sleep(SpotifySongDuration -5)
+            # I want to check again where the song is, because of the loading time of the script.
+            results = sp.current_user_playing_track()
+            SpotifySongDuration = results['item']['duration_ms'] / 1000
+            songTimeStamp = results['progress_ms'] / 1000
+            roundedSongTimeStamp = math.trunc(songTimeStamp)
+            print("You are currently at: " + str(roundedSongTimeStamp) + "S" + " of the " + str(SpotifySongDuration) + "S")
+            time.sleep(SpotifySongDuration - roundedSongTimeStamp)
             media.stop()
             os.system("reloader.py")
             # Restarting the script ones the video ends
