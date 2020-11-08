@@ -26,6 +26,8 @@ You can install those using PIP
  - pywin32
 # Music Player
 Just keep using Spotify, i only made it for spotify
+# Issues
+Sometime it says: "Unable to extract video data". Restarting script works. But will look into it. 
 # TO-DO 
 - [X] Detecting the songs name + Artist
 - [x] Getting the song name out of the results variable
