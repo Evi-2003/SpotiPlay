@@ -35,7 +35,7 @@ Just keep using Spotify, i only made it for spotify
 - [X] Implement a easy authorization for the user, so they don't have to edit the script --- For now impossible, from a security stand point. I can't hide the secret key. So you need to set your own. I could only do this on a server side, which i won't do. (Maybe in the future)
 - [X] Finding a way to start the video at a specified point
 - [X] Make the video follow the timestamp of the song - This is a hard one for now -- Need to figure out how to make the VLC video start from another time than 0:00. I found out that i could change the youtube url with the seconds played in Spotify. But sadly that's not the fix. VLC downloads the video from 0;00 so that won't work for now. 
-
+- [ ] Asking for the client_id, client_secret, and the username. So the user doesn't have to change the script...
 - [ ] Chaning the video in the VLC player without restarting the rescript. 
 - [ ] Cleaning up the code
 
