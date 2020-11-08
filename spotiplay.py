@@ -50,7 +50,7 @@ class spotiplay(object):
             roundedSongTimeStamp = math.trunc(songTimeStamp)
             # The actuaL player
             print("You are currently at: " + str(roundedSongTimeStamp) + "S" + " of the " + str(SpotifySongDuration) + "S")
-            Media.add_option('start-time=' + str(songTimeStamp + 1)) #1s run time diffrence
+            Media.add_option('start-time=' + str(songTimeStamp)) # You could add a runtime diffrence, but in my situtation it looks quite alright
             Media.get_mrl()
             player.set_media(Media)
             player.play()
