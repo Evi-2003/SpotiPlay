@@ -10,7 +10,7 @@ from spotipy.oauth2 import SpotifyOAuth
 from youtube_search import YoutubeSearch
 import spotipy.util as util
 import configparser
-
+time.sleep(3) # Possible fix for the issue: could not extract video
 # We need some Authentication.
 # The Client_ID Client_Secret And Username needs to be set by yourself, for now.
 config = configparser.ConfigParser()
