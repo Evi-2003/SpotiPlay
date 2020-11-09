@@ -35,8 +35,9 @@ Just keep using Spotify, i only made it for spotify
 - [X] Finding a way to start the video at a specified point
 - [X] Make the video follow the timestamp of the song - This is a hard one for now -- Need to figure out how to make the VLC video start from another time than 0:00. I found out that i could change the youtube url with the seconds played in Spotify. But sadly that's not the fix. VLC downloads the video from 0;00 so that won't work for now. 
 - [X] Asking for the client_id, client_secret, and the username. So the user doesn't have to change the script...
+- [X] Cleaning up the code - 09-11-2020
 - [ ] Chaning the video in the VLC player without restarting the rescript. 
-- [ ] Cleaning up the code
+- [ ] Checking every 5, or 10 seconds if the song changes, and if that happend restart the script
 
 
 
