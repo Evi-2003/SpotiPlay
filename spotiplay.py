@@ -12,7 +12,7 @@ import spotipy.util as util
 import configparser
 # Making user aware of the redirection url
 print("Add to your spotify developers dashboard the following redirection url: http://example.com/callback/")
-time.sleep(3) # LEAVE THIS! THIS IS A FIX FOR THE ISSUE: COULD NOT EXTRACT VIDEO
+time.sleep(5) # LEAVE THIS! THIS IS A FIX FOR THE ISSUE: COULD NOT EXTRACT VIDEO
 # Reading the config
 config = configparser.ConfigParser()
 config.read('config.ini')
@@ -77,6 +77,7 @@ class spotiplay(object):
             roundedSongTimeStamp = math.trunc(songTimeStamp)
 
             # Getting the video from Youtube
+            print('https://youtube.com/watch?v=' + searchResult[0]['id'])
             url = 'https://youtube.com/watch?v=' + searchResult[0]['id']
             video = pafy.new(url)
             best = video.getbestvideo()
