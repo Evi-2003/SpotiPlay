@@ -24,7 +24,7 @@ You can install those using PIP
 # Music Player
 Just keep using Spotify, i only made it for spotify
 # Issues
-- [X] Sometime it says: "Unable to extract video data". Latest fix should work!
+- [X] Sometime it says: "Unable to extract video data". Latest release should work! If not, please report the issue.
 # TO-DO 
 - [X] Detecting the songs name + Artist
 - [x] Getting the song name out of the results variable
