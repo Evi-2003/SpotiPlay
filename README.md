@@ -38,7 +38,7 @@ Just keep using Spotify, i only made it for spotify
 - [ ] Changing the video in the VLC player without restarting the rescript. 
 - [ ] A option for a default display to display the video at
 - [ ] Checking every 5, or 10 seconds if the song changes, and if that happend restart the script
-
+- [ ] Finding a other way of reloading the script so reloader.py is not needed anymore
 
 
 
