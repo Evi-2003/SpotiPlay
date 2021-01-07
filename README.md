@@ -1,6 +1,7 @@
 # SpotiPlay
 A program to automatically find the right music video for the Spotify song, and play it in line with the song. 
 So you can watch the official music video's while using Spotify. Hope you like it! 
+![alt text](https://github.com/Remco17/SpotiPlay/blob/main/harry.png) ( Harry Styles - Treat people with kindness )
 # Usage
 Start spotiplay.py after installing the requirements. You will also need the spotify devlopers dashboard!
 
