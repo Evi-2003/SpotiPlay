@@ -1,3 +1,4 @@
+# Started recoding SpotiPlay
 # SpotiPlay
 A program to automatically find the right music video for the Spotify song, and play it in line with the song. 
 So you can watch the official music video's while using Spotify. Hope you like it! 
