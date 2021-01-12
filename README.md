@@ -7,7 +7,7 @@ Start spotiplay.py after installing the requirements. You will also need the spo
 
 You may notice at some video's the song and the video does not go aline of eachother. Which is a irritating issue which for now i can't resolve. It is simply because of official music video's are often a bit longer then the actual song on Spotify. Which i can't detect. If the song writer is singing it can look weird if they go along. [Patch 0.91 should help! ... or a later version](https://github.com/Remco17/SpotiPlay/releases/tag/1.0)
 # Language
-I'm going to build this using Python
+I'm going to build this using Python. Maybe i will switch later to nodejs as my web app will run on that (private repo for now) 
 # API
 For this to work we need to detect the song that is currently playing. Spotify has an API for this. 
 For now, you need to set your own variables from the Spotify Developer website. 
