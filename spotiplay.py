@@ -104,12 +104,7 @@ def findMusicVideo():
     print(foundVideo)
 findMusicVideo()
 
-# Downloading video
-def downloadVideo():
-    global best
-    video = pafy.new(foundVideo)
-    best = video.getbestvideo()
-downloadVideo()
+
 
 def startPlayer():
     global videoPlayer
@@ -130,18 +125,19 @@ def startPlayer():
     print("The song will end in " + str(timeNeedtoSleep) + " seconds")
     time.sleep(timeNeedtoSleep)
     videoPlayer.stop()
-startPlayer() # start player for first time
+    collectSong()
+    findMusicVideo()
+    downloadVideo()
 
-# Checking which song is playing when the song ends
+# Downloading video
+def downloadVideo():
+    global best
+    video = pafy.new(foundVideo)
+    best = video.getbestvideo()
+    startPlayer()
+
 collectSong()
-print('new song collected')
-findMusicVideo()
-print("found music video")
 downloadVideo()
-print('downloaded video')
-startPlayer()
-print('has started player')
-
 
 
 # This is currently not working, i'm working on this. If someone can help me with this would be awesome! ;)
