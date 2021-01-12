@@ -1,24 +1,37 @@
 import sys
-import vlc
-import spotipy
+import tkinter as tk
 import pafy
+import vlc
 import time
+from timeloop import Timeloop
+from datetime import timedelta
 import math
 import os
 import win32gui
-from spotipy.oauth2 import SpotifyOAuth
-from youtube_search import YoutubeSearch
+import spotipy
+from spotipy.oauth2 import SpotifyOAuth # Will be needed for the Spotify Authentication and to see which song is being played
+from youtube_search import YoutubeSearch # Will be needed for downloading the associated song video
 import spotipy.util as util
 import configparser
-# Making user aware of the redirection url
-print("Add to your spotify developers dashboard the following redirection url: http://example.com/callback/")
-time.sleep(5) # LEAVE THIS! THIS IS A FIX FOR THE ISSUE: COULD NOT EXTRACT VIDEO
-# Reading the config
+import threading
+
+print ('For this script to work you need to configure some things at the spotify developer dashboard')
+print ('At the repo you must read the instructions to configure the spotify dashboard')
+
+print ('----') 
+
+print ('Now we will need some stuff')
+
+# Reading the hidden config file to save the settings
 config = configparser.ConfigParser()
-config.read('config.ini')
+config.read('.config.ini')
 config.get('DEFAULT', 'username')
 config.get('DEFAULT', 'client_id')
 config.get('DEFAULT', 'client_secret')
+
+# The script will check here if the config file already had been configured
+# If the script sees that the config file is the same as the one deliverd with the standard settings it will ask for new ones
+# --------
 # Getting the username
 if config['DEFAULT']['username'] == "username":
     print("Input username. ( It is not the same as your e-mail.  It's a weird username which you can find on spotify.com at your account")
@@ -28,7 +41,6 @@ if config['DEFAULT']['username'] == "username":
         config.write(configfile)
 else:
     print("Username set as: " + config['DEFAULT']['username'])
-
 # Getting te client_id
 if config['DEFAULT']['client_id'] == "id":
     print("Input Client-ID... You can get it from the spotify developer dashboard")
@@ -38,7 +50,6 @@ if config['DEFAULT']['client_id'] == "id":
         config.write(configfile)
 else:
     print("client_id set as: " + config['DEFAULT']['client_id'])
-
 # Getting the client_secret
 if config['DEFAULT']['client_secret'] == "secret":
     print("Input Client-secret... You can get it from the spotify developer dashboard")
@@ -49,9 +60,8 @@ if config['DEFAULT']['client_secret'] == "secret":
 else:
     print("client_secret set as: " + config['DEFAULT']['client_secret'])
 
-scope = "user-read-currently-playing" # For this script we only need the current playing song, 
-
-# Setting the tokens for the authentications
+# We will now set the token with the information from the config file:
+scope = "user-read-currently-playing"
 token = util.prompt_for_user_token(
                            config['DEFAULT']['username'],
                            scope,
@@ -59,53 +69,90 @@ token = util.prompt_for_user_token(
                            config['DEFAULT']['client_secret'],
                            config['DEFAULT']['redirect_uri'])
 
-# Method and class, so it is easier to call the method.
-class spotiplay(object):
-    def EeverythingActually(self):
-        if token:
-            sp = spotipy.Spotify(auth=token)
-            results = sp.current_user_playing_track()
-            songName = results["item"]["name"]
-            artistName = results['item']['album']['artists'][0]['name']
+# We will be using global variables so i will be able to use variables in other functions
+nameOfSong = 'none'
+nameOfAuthor= 'none'
+songTimeStamp = 0
+songDuration = 0
+spotifyResults = ''
+youtubeSearchTerms = 'none'
+def collectSong():
+    global songDuration
+    global songTimeStamp
+    global nameOfSong
+    global nameOfAuthor
+    global spotifyResultss
+    global foundVideo
+    player = ''
+    sp = spotipy.Spotify(auth=token)
+    spotifyResults = sp.current_user_playing_track()
+    nameOfAuthor = spotifyResults['item']['album']['artists'][0]['name']
+    nameOfSong = spotifyResults["item"]["name"]
+    songTimeStamp = spotifyResults['progress_ms'] / 1000
+    songDuration = spotifyResults['item']['duration_ms'] /1000
+collectSong()
+oldNameOfSong = nameOfSong # Note which song currently is assigned to nameOfSong
+print ("The song you are currently playing:" + " " + nameOfSong + " - Author: " + nameOfAuthor)
 
-            search = songName + " - " + artistName
-            searchResult = YoutubeSearch(search, max_results=1).to_dict()
-            print("Song Author " + artistName)
-            print(searchResult[0]['id'])
-            songTimeStamp = results['progress_ms'] / 1000
-            SpotifySongDuration = results['item']['duration_ms'] /1000
-            roundedSongTimeStamp = math.trunc(songTimeStamp)
+# The following fuction will find the correct youtube video for the song
+def findMusicVideo():
+    global youtubeSearchTerms
+    global foundVideo
+    youtubeSearchTerms = nameOfSong + " - " + nameOfAuthor
+    foundVideo = YoutubeSearch(youtubeSearchTerms, max_results=1).to_dict()
+    foundVideo = ('https://youtube.com/watch?v=' + foundVideo[0]['id'])
+    print(foundVideo)
+findMusicVideo()
 
-            # Getting the video from Youtube
-            print('https://youtube.com/watch?v=' + searchResult[0]['id'])
-            url = 'https://youtube.com/watch?v=' + searchResult[0]['id']
-            video = pafy.new(url)
-            best = video.getbestvideo()
-            Instance = vlc.Instance()
-            player = Instance.media_player_new()
-            Media = Instance.media_new(best.url)
+# Downloading video
+def downloadVideo():
+    global best
+    video = pafy.new(foundVideo)
+    best = video.getbestvideo()
+downloadVideo()
 
-            # I want to check again where the song is, because of the loading time of the script.
-            results = sp.current_user_playing_track()
-            SpotifySongDuration = results['item']['duration_ms'] / 1000
-            songTimeStamp = results['progress_ms'] / 1000
-            roundedSongTimeStamp = math.trunc(songTimeStamp)
+def startPlayer():
+    global videoPlayer
+    global musicVideo
+    global Instance
+    Instance = vlc.Instance()
+    videoPlayer = Instance.media_player_new()
+    musicVideo = Instance.media_new(best.url)
 
-            # The actuaL player
-            print("You are currently at: " + str(roundedSongTimeStamp) + "S" + " of the " + str(SpotifySongDuration) + "S")
-            Media.add_option('start-time=' + str(songTimeStamp)) # You could add a runtime diffrence
-            Media.get_mrl()
-            player.set_media(Media)
-            player.play()
-            videoLength = (video.length)
-            
-	    # Calculating when the song is over so it restarts
-            time.sleep(SpotifySongDuration - roundedSongTimeStamp)
-            player.stop()
-            os.system("reloader.py") # starts the script reloader .py
+    musicVideo.add_option('start-time=' + str(songTimeStamp))
+    musicVideo.get_mrl()
+    # Here we will check if the song has changed
+    videoPlayer.set_media(musicVideo)
+    videoPlayer.play()
+    videoPlayer.set_fullscreen(True)
+    timeNeedtoSleep = songDuration - songTimeStamp
+    timeNeedtoSleep = math.trunc(timeNeedtoSleep)
+    print("The song will end in " + str(timeNeedtoSleep) + " seconds")
+    time.sleep(timeNeedtoSleep)
+    videoPlayer.stop()
+startPlayer() # start player for first time
 
-# Start the function
-spotiplay.EeverythingActually(1)
+# Checking which song is playing when the song ends
+collectSong()
+print('new song collected')
+findMusicVideo()
+print("found music video")
+downloadVideo()
+print('downloaded video')
+startPlayer()
+print('has started player')
 
-while True:
-     pass
+
+
+# This is currently not working, i'm working on this. If someone can help me with this would be awesome! ;)
+#def hasSongChanged():
+ #       collectSong()
+ #       if nameOfSong != oldNameOfSong:
+ #           findMusicVideo()
+ #           downloadVideo()
+ #           time.sleep(3)
+ #          musicVideo = Instance.media_new(best.url)
+ #           musicVideo.add_option('start-time=' + str(songTimeStamp))
+ #          musicVideo.get_mrl()
+ #          videoPlayer.set_media(musicVideo)
+
