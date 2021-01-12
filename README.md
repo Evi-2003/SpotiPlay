@@ -1,4 +1,3 @@
-# Started recoding SpotiPlay
 # SpotiPlay
 A program to automatically find the right music video for the Spotify song, and play it in line with the song. 
 So you can watch the official music video's while using Spotify. Hope you like it! 
@@ -6,7 +5,7 @@ So you can watch the official music video's while using Spotify. Hope you like i
 # Usage
 Start spotiplay.py after installing the requirements. You will also need the spotify devlopers dashboard!
 
-You may notice at some video's the song and the video does not go aline of eachother. Which is a irritating issue which for now i can't resolve. It is simply because of official music video's are often a bit longer then the actual song on Spotify. Which i can't detect. If the song writer is singing it can look weird if they go along. [Patch 0.91 should help! ... or a later version](https://github.com/Remco17/SpotiPlay/releases/tag/0.91)
+You may notice at some video's the song and the video does not go aline of eachother. Which is a irritating issue which for now i can't resolve. It is simply because of official music video's are often a bit longer then the actual song on Spotify. Which i can't detect. If the song writer is singing it can look weird if they go along. [Patch 0.91 should help! ... or a later version](https://github.com/Remco17/SpotiPlay/releases/tag/1.0)
 # Language
 I'm going to build this using Python
 # API
@@ -37,10 +36,9 @@ Just keep using Spotify, i only made it for spotify
 - [X] Make the video follow the timestamp of the song - This is a hard one for now -- Need to figure out how to make the VLC video start from another time than 0:00. I found out that i could change the youtube url with the seconds played in Spotify. But sadly that's not the fix. VLC downloads the video from 0;00 so that won't work for now. 
 - [X] Asking for the client_id, client_secret, and the username. So the user doesn't have to change the script...
 - [X] Cleaning up the code - 09-11-2020
-- [ ] Changing the video in the VLC player without restarting the rescript. 
+- [X] Changing the video in the VLC player without restarting the rescript. - CURRENTLY ONLY WORKS WHEN SONG ENDS, NOT IF THE SONG HAS CHANGED FROM SPOTIFY
 - [ ] A option for a default display to display the video at
-- [ ] Checking every 5, or 10 seconds if the song changes, and if that happend restart the script
-- [ ] Finding a other way of reloading the script so reloader.py is not needed anymore
+- [ ] Checking every 5, or 10 seconds if the song changes, and if that happend restart the script - THIS CURRENTLY IS NOT SUPPORTED YET, I Want to make this work without a second restarting script
 
 
 
